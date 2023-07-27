@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="tabla-datos mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">firstname</th>
+                <th scope="col">lastname</th>
+                <th scope="col">businessentityid</th>
+                <th scope="col">jobtitle</th>
+                <th scope="col">gender</th>
+            </tr>
+        </thead>
+        
+         
+            {% for item in empleado %}
+            <tr>
+                <th scope="row">{{item.firstname}}</th>
+                <td>{{item.lastname}}</td>
+                <td>{{item.employee__businessentityid}}</td>
+                <td>{{item.employee__jobtitle}}</td>
+                <td>{{item.employee__gender}}</td>
+                <td>
+                    <form action="detalle/{{item.person__firstname}}" method="GET">
+                      {% csrf_token %}
+                      <button class="btn btn-primary" type="submit" value="{{ item.departamento__numero_departamento }}" name="detalle_id">Ver</button>
+                    </form>
+                </td>
+            </tr>
+            
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</div>  
+{% endblock %}
